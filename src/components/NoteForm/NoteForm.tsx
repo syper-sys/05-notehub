@@ -1,6 +1,6 @@
 import css from "./NoteForm.module.css";
 import * as Yup from "yup";
-import type { NoteTag, CreateNote } from "../../types/note";
+import { type NoteTag, type CreateNote, ALL_TAGS } from "../../types/note";
 import type { FormikHelpers } from "formik";
 import { useId } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
@@ -23,7 +23,9 @@ const CreateNoteFormSchema = Yup.object({
     .max(50, "Title is too long")
     .required("Title is required"),
   content: Yup.string().max(500, "Content is too long"),
-  tag: Yup.string().required(),
+  tag: Yup.string()
+    .oneOf(ALL_TAGS, "Invalid tag selected")
+    .required("Tag is required"),
 });
 
 function NoteForm({ onClose }: NoteFormProps) {
@@ -46,7 +48,6 @@ function NoteForm({ onClose }: NoteFormProps) {
     formikHelpers: FormikHelpers<CreateNote>,
   ) => {
     createNoteM.mutate(values);
-    formikHelpers.resetForm();
   };
 
   return (

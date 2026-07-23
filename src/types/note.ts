@@ -1,4 +1,12 @@
-export type NoteTag = "Todo" | "Work" | "Personal" | "Meeting" | "Shopping";
+export const ALL_TAGS = [
+  "Work",
+  "Personal",
+  "Meeting",
+  "Shopping",
+  "Todo",
+] as const;
+
+export type NoteTag = (typeof ALL_TAGS)[number];
 
 export interface Note {
   id: string;
