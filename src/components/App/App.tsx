@@ -8,7 +8,7 @@ import Pagination from "../Pagination/Pagination";
 import Modal from "../Modal/Modal";
 import NoteForm from "../NoteForm/NoteForm";
 import SearchBox from "../SearchBox/SearchBox";
-import { fetchNotes } from "../../services/noteServices";
+import { fetchNotes } from "../../services/noteService";
 
 function App() {
   const [currentPage, setCurrentPage] = useState(1);
