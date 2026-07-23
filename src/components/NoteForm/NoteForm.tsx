@@ -1,7 +1,6 @@
 import css from "./NoteForm.module.css";
 import * as Yup from "yup";
 import { type NoteTag, type CreateNote, ALL_TAGS } from "../../types/note";
-import type { FormikHelpers } from "formik";
 import { useId } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
@@ -43,10 +42,7 @@ function NoteForm({ onClose }: NoteFormProps) {
     },
   });
 
-  const handleSubmit = (
-    values: CreateNote,
-    formikHelpers: FormikHelpers<CreateNote>,
-  ) => {
+  const handleSubmit = (values: CreateNote) => {
     createNoteM.mutate(values);
   };
 
